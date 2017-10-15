@@ -7,14 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F7CFC9B01F9207F6007A1C62 /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F7CFC9AF1F9207E9007A1C62 /* Inceptionv3.mlmodel */; };
+		F7CFC9B11F92080B007A1C62 /* Inceptionv3.mlmodel in Resources */ = {isa = PBXBuildFile; fileRef = F7CFC9AF1F9207E9007A1C62 /* Inceptionv3.mlmodel */; };
+		F7CFC9B31F92114E007A1C62 /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = F7CFC9B21F921146007A1C62 /* pin.png */; };
+		F7E87D971F930D00003EA613 /* p5VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E87D961F930D00003EA613 /* p5VC.swift */; };
 		F7E965841F8F719600FA7C43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E965831F8F719600FA7C43 /* AppDelegate.swift */; };
 		F7E965861F8F719600FA7C43 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E965851F8F719600FA7C43 /* ViewController.swift */; };
 		F7E965891F8F719600FA7C43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7E965871F8F719600FA7C43 /* Main.storyboard */; };
 		F7E9658B1F8F719600FA7C43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7E9658A1F8F719600FA7C43 /* Assets.xcassets */; };
 		F7E9658E1F8F719600FA7C43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7E9658C1F8F719600FA7C43 /* LaunchScreen.storyboard */; };
+		F7E965961F8F7A5900FA7C43 /* p2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E965951F8F7A5900FA7C43 /* p2VC.swift */; };
+		F7E965981F8F9BF000FA7C43 /* p3VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E965971F8F9BF000FA7C43 /* p3VC.swift */; };
+		F7F849E61F909277002BED9E /* p4VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F849E51F909277002BED9E /* p4VC.swift */; };
+		F7F849EA1F90E6A2002BED9E /* p4TVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F849E91F90E6A2002BED9E /* p4TVCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F7CFC9AF1F9207E9007A1C62 /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Inceptionv3.mlmodel; sourceTree = "<group>"; };
+		F7CFC9B21F921146007A1C62 /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
+		F7E87D961F930D00003EA613 /* p5VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = p5VC.swift; sourceTree = "<group>"; };
 		F7E965801F8F719600FA7C43 /* myAppLogin2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myAppLogin2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7E965831F8F719600FA7C43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F7E965851F8F719600FA7C43 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +33,10 @@
 		F7E9658A1F8F719600FA7C43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F7E9658D1F8F719600FA7C43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F7E9658F1F8F719600FA7C43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F7E965951F8F7A5900FA7C43 /* p2VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = p2VC.swift; sourceTree = "<group>"; };
+		F7E965971F8F9BF000FA7C43 /* p3VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = p3VC.swift; sourceTree = "<group>"; };
+		F7F849E51F909277002BED9E /* p4VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = p4VC.swift; sourceTree = "<group>"; };
+		F7F849E91F90E6A2002BED9E /* p4TVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = p4TVCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,9 +69,16 @@
 		F7E965821F8F719600FA7C43 /* myAppLogin2 */ = {
 			isa = PBXGroup;
 			children = (
+				F7CFC9B21F921146007A1C62 /* pin.png */,
+				F7CFC9AF1F9207E9007A1C62 /* Inceptionv3.mlmodel */,
 				F7E965831F8F719600FA7C43 /* AppDelegate.swift */,
 				F7E965851F8F719600FA7C43 /* ViewController.swift */,
 				F7E965871F8F719600FA7C43 /* Main.storyboard */,
+				F7E965951F8F7A5900FA7C43 /* p2VC.swift */,
+				F7F849E51F909277002BED9E /* p4VC.swift */,
+				F7F849E91F90E6A2002BED9E /* p4TVCell.swift */,
+				F7E965971F8F9BF000FA7C43 /* p3VC.swift */,
+				F7E87D961F930D00003EA613 /* p5VC.swift */,
 				F7E9658A1F8F719600FA7C43 /* Assets.xcassets */,
 				F7E9658C1F8F719600FA7C43 /* LaunchScreen.storyboard */,
 				F7E9658F1F8F719600FA7C43 /* Info.plist */,
@@ -97,6 +119,11 @@
 					F7E9657F1F8F719600FA7C43 = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -123,8 +150,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7CFC9B11F92080B007A1C62 /* Inceptionv3.mlmodel in Resources */,
 				F7E9658E1F8F719600FA7C43 /* LaunchScreen.storyboard in Resources */,
 				F7E9658B1F8F719600FA7C43 /* Assets.xcassets in Resources */,
+				F7CFC9B31F92114E007A1C62 /* pin.png in Resources */,
 				F7E965891F8F719600FA7C43 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,7 +166,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7E965861F8F719600FA7C43 /* ViewController.swift in Sources */,
+				F7E965981F8F9BF000FA7C43 /* p3VC.swift in Sources */,
+				F7E965961F8F7A5900FA7C43 /* p2VC.swift in Sources */,
+				F7E87D971F930D00003EA613 /* p5VC.swift in Sources */,
+				F7F849EA1F90E6A2002BED9E /* p4TVCell.swift in Sources */,
+				F7F849E61F909277002BED9E /* p4VC.swift in Sources */,
 				F7E965841F8F719600FA7C43 /* AppDelegate.swift in Sources */,
+				F7CFC9B01F9207F6007A1C62 /* Inceptionv3.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
