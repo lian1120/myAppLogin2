@@ -14,9 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    var account = ""
-    var adversaryLat:Double = 0.0
-    var adversaryLng:Double = 0.0
+    var account = ""  //儲存使用者登入的帳號
+    var adversaryLat:Double = 0.0  //對方的lat經度
+    var adversaryLng:Double = 0.0  //對方的lng緯度
     var ref:DatabaseReference!  //Firebase資料庫的變數
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {

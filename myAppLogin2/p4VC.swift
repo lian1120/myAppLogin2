@@ -167,6 +167,7 @@ extension p4VC: UIImagePickerControllerDelegate {
             return
         }
         
+        //將原圖尺寸轉換為299*299大小
         UIGraphicsBeginImageContextWithOptions(CGSize(width: 299, height: 299), true, 2.0)
         image.draw(in: CGRect(x: 0, y: 0, width: 299, height: 299))
         let newImage = UIGraphicsGetImageFromCurrentImageContext()!
