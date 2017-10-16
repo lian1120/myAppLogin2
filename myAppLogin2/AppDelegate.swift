@@ -7,17 +7,24 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
     var account = ""
     var adversaryLat:Double = 0.0
     var adversaryLng:Double = 0.0
+    var ref:DatabaseReference!  //Firebase資料庫的變數
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        FirebaseApp.configure()  //Firebase組態設定
+        ref = Database.database().reference()  //Firebase參考指標
+        
         return true
     }
 

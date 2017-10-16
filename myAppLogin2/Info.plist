@@ -29,6 +29,10 @@
 	<string>gps</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>gps</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>microphone</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>speech</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>

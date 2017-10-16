@@ -8,15 +8,18 @@
 
 import UIKit
 import Speech
+import Firebase
 
 class p5VC: UIViewController,SFSpeechRecognizerDelegate {
     
-    //語音輸入。speech:說話能力、言詞、言論、演說、演講
+    let app = UIApplication.shared.delegate as! AppDelegate  //找AppDelegate的資源變數
+    
+    //語音辨識輸入。speech:說話能力、言詞、言論、演說、演講
     //zh ->語系，TW->地區，locale:(事情發生的）現場，場所
     var audioEngine = AVAudioEngine()  //語音引擎
-    var request = SFSpeechAudioBufferRecognitionRequest()
+    var request = SFSpeechAudioBufferRecognitionRequest()  //請求
     let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "zh-TW"))
-    var recognitionTask:SFSpeechRecognitionTask? = nil
+    var recognitionTask:SFSpeechRecognitionTask? = nil  //任務
     
     @IBOutlet weak var sendMessageAttribute: UIButton!  //傳送訊息的按鈕屬性值
     
@@ -38,10 +41,9 @@ class p5VC: UIViewController,SFSpeechRecognizerDelegate {
             //開始錄音
             sendMessageAttribute.isHidden = false  //不隱藏 傳送按鈕
             audioEngine = AVAudioEngine()  //重新建立語音引擎
-            startRecording()  //自訂方法，開始接收聲音
+            startRecording()  //自訂方法，開始接收聲音辨識
         }
     }
-    
     
     func startRecording() {
         //處理目前正在辨識中的任務
@@ -96,25 +98,40 @@ class p5VC: UIViewController,SFSpeechRecognizerDelegate {
     
     
     @IBAction func sendMessage(_ sender: Any) {
-        print(messageArea.description)
-    
+        //傳送訊息給某一位使用者
+        if isWho.text != "" {
+            
+            let abc:String = messageArea.text  //取得留言的字串
+            
+            let usersRef = app.ref.child("users")  //取得Firebase
+            
+            //傳送訊息到Firebase。key->value
+            usersRef.child("\(isWho.text!)").setValue(["message":"\(abc)"])
+        
+            //alert建構式
+            let alert = UIAlertController(title: "~訊息傳送~", message: "已經傳遞", preferredStyle: .alert)
+            
+            //增加對話框按鈕
+            let okAction = UIAlertAction(title: "OK", style: .default) {
+                (action) in
+                self.messageArea.text = ""  //訊息傳送後，把留言輸入框清空。
+                self.isWho.text = ""  //訊息傳送後，把 isWho輸入框清空。
+            }
+            
+            alert.addAction(okAction)  //對話框加入按鈕功能
+            
+            present(alert, animated: true)  //present，對話框 執行的指令
+        
+        }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         sendMessageAttribute.isHidden = true  //隱藏 傳送按鈕
-        //使用者授權 權限
+        
+        //使用者授權 語音辨識的權限
         SFSpeechRecognizer.requestAuthorization { (status) in
             switch status {
             case .authorized :
@@ -125,6 +142,16 @@ class p5VC: UIViewController,SFSpeechRecognizerDelegate {
                 print("xx")
             }
         }
+        
+        //Listen for value events，一旦Firebase有改變就會通知使用者
+        //針對 特定的某一人
+        let usersRef = app.ref.child("users")
+        let userA001Ref = usersRef.child("\(app.account)")
+        userA001Ref.observe(DataEventType.value) { (data) in
+            let newdata = data.value as! [String:String]
+            self.previously.text = newdata["message"]
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
