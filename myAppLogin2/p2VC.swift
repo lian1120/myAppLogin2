@@ -31,6 +31,7 @@ class p2VC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,CLLocat
         pickerView.selectRow(Int(arc4random()%97)+3, inComponent: 1, animated: true)
         pickerView.selectRow(Int(arc4random()%97)+3, inComponent: 2, animated: true)
         
+        //判斷三個component的selectedRow的數字，如果三個都相同就是Bingo
         if(dataArray1[pickerView.selectedRow(inComponent: 0)] == dataArray2[pickerView.selectedRow(inComponent: 1)] &&
             dataArray2[pickerView.selectedRow(inComponent: 1)] == dataArray3[pickerView.selectedRow(inComponent: 2)]) {
             
@@ -73,7 +74,7 @@ class p2VC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,CLLocat
     
     
     
-    var id = ""
+    var id = ""//修改帳密需要有id
     
     @IBOutlet weak var accountLabel: UILabel!//帳號標籤
     
@@ -97,7 +98,7 @@ class p2VC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,CLLocat
     
     //修改按鈕：顯示帳密輸入框 與 取得帳號的id
     @IBAction func modify(_ sender: Any) {
-        let account2 = app.account
+        let account2 = app.account  //取得使用者的帳號
         queue.async {
             let url = URL(string: "http://localhost:8888/1.php")
             
@@ -120,7 +121,7 @@ class p2VC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,CLLocat
                 //回傳資料用utf8解碼
                 let result = String(data: data!, encoding: String.Encoding.utf8)
                 DispatchQueue.main.async {
-                    self.id = result!
+                    self.id = result!  //從PHP取得的id
                 }
             }
             task.resume()  //任務執行
@@ -188,7 +189,7 @@ class p2VC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,CLLocat
         }
     }
     
-    //密碼複雜性驗證 - 正規表示式 regex
+    //密碼複雜性驗證 - 正規表示式 regex 條件：包含英數符號至少六位數
     private func isPasswordValid(_ password : String) -> Bool{
         let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{6,}")
         return passwordTest.evaluate(with: password)
@@ -203,9 +204,10 @@ class p2VC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,CLLocat
         }
     }
     
+    //修改帳號密碼 傳送到PHP 儲存在MySQL
     @IBAction func confirm(_ sender: Any) {
-        if checkOK && checkOK2 && checkpasswdR {
-            let id2 = id
+        if checkOK && checkOK2 && checkpasswdR {  //判斷三種狀態是否為true
+            let id2 = id  //取得必要的資料
             let account2 = account.text!
             let passwd2 = passwd.text!
             queue.async {
@@ -302,6 +304,7 @@ class p2VC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,CLLocat
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //顯示使用者的帳號。隱藏修改帳密按鈕。
         name.text = app.account
         accountLabel.isHidden = true
         account.isHidden = true

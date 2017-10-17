@@ -12,6 +12,8 @@ import CoreLocation//定位
 
 class p3VC: UIViewController,CLLocationManagerDelegate {
     
+    //兩點坐標，進行導航
+    
     let app = UIApplication.shared.delegate as! AppDelegate  //找AppDelegate的資源變數
     
     let lmgr = CLLocationManager()//地圖管理員

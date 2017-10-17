@@ -66,16 +66,15 @@ class p4VC: UIViewController,UITableViewDataSource,UITableViewDelegate,UINavigat
         //使用者選擇某一筆資料之後，會做的事情
         //取得對手的GPS位置
         
-        
-        //取得帳號 做為索引
+        //取得帳號 做為索引，然後取得被選中的使用者GPS
         let account2 =  items[indexPath.row].split(separator: ":").map(String.init)
-        //print("p4VC.被選的->\(account2[1])")
+        
         let url = URL(string: "http://localhost:8888/6.php")
         
         //建立一個urlRequest。httpBody拿到帳密資料。httpMethod為POST
         var  req = URLRequest(url: url!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 60)
         
-        //將帳密訊息寫入HTTP body
+        //將帳號訊息寫入HTTP body
         req.httpBody = "account=\(account2[1])".data(using: .utf8)
         req.httpMethod = "POST"
         //以上是做設定，送出資料透過URLRequest
@@ -91,12 +90,17 @@ class p4VC: UIViewController,UITableViewDataSource,UITableViewDelegate,UINavigat
             guard error == nil else {return} //守門員
             
             //回傳資料用utf8解碼
-            
             let result = String(data: data!, encoding: String.Encoding.utf8)
+            
+            //從MySQL拿回來的GPS，做字串拆解，分成lat,lng
             let latlng = result?.characters.split(separator: ",").map(String.init)
+            
+            //原來是背景執行緒，現在存儲資料需要主執行緒
             DispatchQueue.main.sync {
                 self.app.adversaryLat = Double(latlng![0])!
                 self.app.adversaryLng = Double(latlng![1])!
+                
+                //有GPS就轉跳頁面到第三頁
                 if let vc = self.storyboard?.instantiateViewController(withIdentifier: "p3VC"){self.show(vc, sender: self)}else{}
             }
         }
@@ -109,10 +113,11 @@ class p4VC: UIViewController,UITableViewDataSource,UITableViewDelegate,UINavigat
     //機器學習
     var model: Inceptionv3!
     
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var imageView: UIImageView!  //顯示照片，來源可以是圖庫或相機
     
-    @IBOutlet weak var classifier: UILabel!
+    @IBOutlet weak var classifier: UILabel!  //解析照片中的主角為何，結果輸出在這裡
     
+    //相機
     @IBAction func doCamera(_ sender: Any) {
         if !UIImagePickerController.isSourceTypeAvailable(.camera) {
             return
@@ -126,6 +131,7 @@ class p4VC: UIViewController,UITableViewDataSource,UITableViewDelegate,UINavigat
         present(cameraPicker, animated: true)
     }
     
+    //圖庫
     @IBAction func doLibrary(_ sender: Any) {
         let picker = UIImagePickerController()
         picker.allowsEditing = false
@@ -134,6 +140,7 @@ class p4VC: UIViewController,UITableViewDataSource,UITableViewDelegate,UINavigat
         present(picker, animated: true)
     }
     
+    //載入模型
     override func viewWillAppear(_ animated: Bool) {
         model = Inceptionv3()
     }
